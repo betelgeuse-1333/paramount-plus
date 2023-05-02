@@ -1,9 +1,15 @@
-from pyspark import SparkContext
-from pyspark.sql import SQLContext
 from pygit2 import Repository
+from pyspark.sql import SparkSession
 
-sc = SparkContext.getOrCreate()
-spark = SQLContext(sc)
+
+def spark_sess():
+    spark = SparkSession.builder \
+        .appName("load post_meta") \
+        .config("spark.driver.extraClassPath", "/Users/David/Desktop/postgresql-42.6.0.jar") \
+        .config("spark.executor.extraClassPath", "Users/David/Desktop//postgresql-42.6.0.jar") \
+        .getOrCreate()
+
+    return spark
 
 
 def curr_branch(branch='none'):

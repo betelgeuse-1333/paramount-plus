@@ -10,12 +10,12 @@ def create_post_meta_table(config_obj=config_obj):
     conn = database_connectors.paramount_database_connection(config_obj)
     cur = conn.cursor()
     query = """
-    CREATE TABLE """ + config_obj.schema + """.post_meta (
-        created_time timestamp,
-        post_h_id VARCHAR(50),
-        page_h_id VARCHAR(50),
-        name_h_id VARCHAR(50),
-        PRIMARY KEY (created_time, post_h_id, page_h_id, name_h_id)
+    CREATE TABLE IF NOT EXISTS """ + config_obj.schema + """.post_meta (
+        created_time timestamp NULL,
+        type VARCHAR(4) NULL,
+        post_h_id VARCHAR(100) NULL,
+        page_h_id VARCHAR(100) NULL,
+        name_h_id VARCHAR(100) NULL
         );
         """
     cur.execute(query)
@@ -23,17 +23,19 @@ def create_post_meta_table(config_obj=config_obj):
     conn.commit()
     conn.close()
 
-    return print("Table post_meta created")
+    return print("Table " + config_obj.schema + ".post_meta created")
+
+
+create_post_meta_table()
 
 
 def create_comment_text_table(config_obj=config_obj):
     conn = database_connectors.paramount_database_connection(config_obj)
     cur = conn.cursor()
     query = """
-    CREATE TABLE """ + config_obj.schema + """.comment_text (
-    message TEXT,
-        h_id VARCHAR(50),
-        PRIMARY KEY (message, h_id)
+    CREATE TABLE IF NOT EXISTS """ + config_obj.schema + """.comment_text (
+    message TEXT NULL,
+    h_id VARCHAR(50) NULL
         );
         """
     cur.execute(query)
@@ -41,21 +43,23 @@ def create_comment_text_table(config_obj=config_obj):
     conn.commit()
     conn.close()
 
-    return print("Table comment_text created")
+    return print("Table " + config_obj.schema + ".comment_text created")
+
+
+create_comment_text_table()
 
 
 def create_comment_info_table(config_obj=config_obj):
     conn = database_connectors.paramount_database_connection(config_obj)
     cur = conn.cursor()
     query = """
-       CREATE TABLE """ + config_obj.schema + """.comment_info (
-        h_id varchar(50),
-        post_h_id VARCHAR(50),
-        up_likes numeric(4),
-        comment_count numeric(4),
-        created_time timestamp,
-        comment_h_id varchar(50),
-        PRIMARY KEY (h_id, post_h_id, comment_h_id)
+       CREATE TABLE IF NOT EXISTS """ + config_obj.schema + """.comment_info (
+        h_id varchar(50) NULL, 
+        post_h_id VARCHAR(50) NULL,
+        up_likes numeric(4) NULL,
+        comment_count numeric(4) NULL,
+        created_time timestamp NULL,
+        comment_h_id varchar(50) NULL
            );
            """
     cur.execute(query)
@@ -63,4 +67,7 @@ def create_comment_info_table(config_obj=config_obj):
     conn.commit()
     conn.close()
 
-    return print("Table comment_info created")
+    return print("Table " + config_obj.schema + ".comment_info created")
+
+
+create_comment_info_table()

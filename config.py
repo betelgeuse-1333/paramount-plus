@@ -3,19 +3,20 @@ import utilities
 branch = utilities.curr_branch()
 
 if branch == "main":
-    schema = "prod"
+    environment = "_prod"
 elif branch == "staging":
-    schema = "qa"
+    environment = "_qa"
 else:
-    schema = "development"
+    environment = "_development"
 
 db_constants = {"host": "localhost",
                 "port": 5432,
                 "user": "maverick",
                 "password": "g00se",
                 "template_database": "template1",
-                "schema": schema,
+                "environment": environment,
                 "database": "paramountplus",
+                "schema": "commentdata",
                 "data_location": {"post_meta": "data/post_meta",
                                   "comment_text": "data/comment_text",
                                   "comment_info": "data/comment_info_jsonl"}}
@@ -33,6 +34,7 @@ class DbConfig:
         self.post_meta = self.data_location["post_meta"]
         self.comment_text = self.data_location["comment_text"]
         self.comment_info = self.data_location["comment_info"]
+        self.environment = self.config["environment"]
         self.schema = self.config["schema"]
         self.host = self.config["host"]
         self.port = self.config["port"]

@@ -21,6 +21,6 @@ def paramount_database_connection(config_obj=config_obj):
         port=config_obj.port,
         user=config_obj.user,
         password=config_obj.password,
-        database=config_obj.database
+        database=config_obj.database+config_obj.environment
     )
     return conn
