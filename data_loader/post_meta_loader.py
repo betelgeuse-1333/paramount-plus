@@ -9,8 +9,8 @@ from pyspark.sql import SparkSession
 
 spark = SparkSession.builder \
     .appName("load post_meta") \
-    .config("spark.driver.extraClassPath", "/Users/David/Documents/repos/maverick/venv/lib/python3.9/site-packages/pyspark/jars/postgresql-42.6.0.jar") \
-    .config("spark.executor.extraClassPath", "/Users/David/Documents/repos/maverick/venv/lib/python3.9/site-packages/pyspark/jars/postgresql-42.6.0.jar") \
+    .config("spark.driver.extraClassPath", "/Users/David/Desktop/postgresql-42.6.0.jar") \
+    .config("spark.executor.extraClassPath", "/Users/David/Desktop/postgresql-42.6.0.jar") \
     .getOrCreate()
 
 
