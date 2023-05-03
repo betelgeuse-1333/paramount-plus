@@ -30,9 +30,9 @@ but avoid premature optimization that would jeopardize timing.\
 _Endpoints/Access:_ Out of scope are endpoints and other pieces of software
 designed to provide access to the database.\
 _Database Migration:_  Again for this exercise this is out of scope.\
-_Unit Testing/Testing:_ If I am done early I will write some tests.
+_Unit Testing/Testing:_ If I am done early I will write some tests.\
 _Indexes:_ The dat size means the database will be sufficiently performant.  As the 
-datasets grow indexes may be needed, but they are out of scope for now.\
+datasets grow indexes may be needed, but they are out of scope for now.
 
 **Users Stories:**  
 Analyst/Dev:  The system needs to be able to be run locally on a developer's
@@ -53,7 +53,7 @@ nested jsonl files and be able to self-reference/self-join.
 **Risks:**\
 _Feasibility:_  Low.  The project is straightforward.  Barring underlying\unforeseen
 data issues the build is straightforward\
-_Complexity:_  Low the data sets and joins are straightforward
+_Complexity:_  Low the data sets and joins are straightforward\
 _Timing:_  High.  6 hours is a short time frame.
 
 **Exploratory Data Analysis (EDA)**\
@@ -73,13 +73,13 @@ world where there is also volume.
 I decided on setting up a Postgres database to house the data and spark as a data
 engine to handle the back end.  Spark is a solid big-data solution that handles 
 JSON files well and can handle streaming if it is ever needed.  Postgres is a familiar 
-database system.  Both play well with Python.  Mor over psycopg2 and pyspark 
+database system.  Both play well with Python.  Moreover psycopg2 and pyspark 
 both are leveraged well within a Python system.  Spark can load directly to Postgres 
 making that seamless.  Most of all I am familiar with both and given a 6-hour time 
 constraint that was valuable as well.
 
 I was tempted to try Trino.  Trino has become a trendy option because it handles
-large volumes of data well, scales and can reqd directly from parquet.  If I had more
+large volumes of data well, scales and can read directly from parquet.  If I had more
 time to implement a spike to investigate it, I probably at least would have 
 experimented with it.  In addition, the assignment specified a database and server,
 and Trino is more akin to a query engine.
@@ -87,7 +87,7 @@ and Trino is more akin to a query engine.
 **A few conscious decisions I made:**\
 -- I mix of OO and procedural approaches as is my style.  While not perfect I took some extra
 time to adhere to DRY and encapsulation and separation of concerns principles.  While not
-perfect,, I tried to avoid being overly _quick and dirty_.\
+perfect, I tried to avoid being overly _quick and dirty_.\
 -- With more time I would have cleaned up the module that processes the jsonl files, as I think it 
 could have been broken up into a few more pieces.\
 -- I spent a lot of time mulling the approach to processing the jsonl files.   The easy option 
