@@ -14,22 +14,25 @@ can begin building it.\
 -- Users will want to update the config file.  Specifically:
 *     - user: postgres username
 *     - password: postgres password
-*     - postgres_driver_path: path to your postgres jar file
 -- I highly recommend a venv.  I considered Docker, but was concerned about time and complexity.
 
-**Running the software:**
+**Running the software:**\
+The following commands should be executed in the terminal from the root level of the project, 
+after activating your venv.\
+`source /path/to/venv/paramount-plus/venv/bin/activate`
+
 _Building the database_\
 1:  Run postgres_create_database.py from the command line at the root level once you
  have updated the config.py.\
-    `python -m database.postgres_create_database.py`\
+    `python -m database.postgres_create_database`\
 2:  Run postgres_create_tables.py from the command line at the root level\
-    `python -m database.postgres_create_tables.py`
+    `python -m database.postgres_create_tables`
 
 _Loading the data to the tables:_\
 1: Run post_meta_loader from the command line at the root level\
-    `python -m data_loader.post_meta_loader.py`\
+    `python -m data_loader.post_meta_loader`\
 2: Run comment_text_loader from the command line at the root level\
-    `python -m data_loader.comment_text_loader.py`\
+    `python -m data_loader.comment_text_loader`\
 3: Run comment_info_loader from the command line at the root level\
-    `python -m data_loader.comment_info_loader.py`
+    `python -m data_loader.comment_info_loader`
 
