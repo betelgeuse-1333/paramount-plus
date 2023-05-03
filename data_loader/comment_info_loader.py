@@ -1,8 +1,8 @@
 from config import DbConfig
 from pyspark.sql.functions import to_timestamp
-import utilities
+import spark_session_builder
 
-spark = utilities.spark_sess()
+spark = spark_session_builder.spark_sess()
 
 
 def transform_row(row):
