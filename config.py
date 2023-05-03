@@ -12,13 +12,13 @@ else:
 
 db_constants = {"host": "localhost",
                 "port": 5432,
-                "user": "maverick",
-                "password": "g00se",
+                "user": "",
+                "password": "",
                 "template_database": "template1",
                 "environment": environment,
                 "database": "paramountplus",
                 "schema": "commentdata",
-                "postgres_driver_path":"/Users/david/Desktop/postgresql-42.3.0.jar",
+                "postgres_driver_path":"str(Path('path', 'to', 'jarfile', 'postgresql-42.3.0.jar')),
                 "data_location": {"post_meta": str(Path('data_loader', 'data', 'post_meta')),
                                   "comment_text": str(Path('data_loader', 'data', 'comment_text')),
                                   "comment_info": str(Path('data_loader', 'data', 'comment_info_jsonl'))}}
