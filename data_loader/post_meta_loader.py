@@ -1,12 +1,11 @@
 from config import DbConfig
-import spark_session_builder
+from data_loader import spark_session_builder
 
 
 # load post meta data
 def load_post_meta_data():
     config_obj = DbConfig()
     spark = spark_session_builder.spark_sess()
-    print(config_obj.post_meta)
     df = spark.read.parquet(config_obj.post_meta)
 
     df.write \

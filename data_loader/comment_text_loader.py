@@ -1,5 +1,5 @@
 from config import DbConfig
-import spark_session_builder
+from data_loader import spark_session_builder
 from pyspark.sql.functions import encode
 
 
