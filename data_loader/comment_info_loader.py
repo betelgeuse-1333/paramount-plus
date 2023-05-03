@@ -9,6 +9,21 @@ def data_go_boom(df, column, alias):
     return df
 
 
+#def big_data_go_boom(row):
+#    h_id = row["h_id"]
+#    for posts in row["posts.data"]:
+#        # process the value...
+#        print(h_id, posts)
+
+
+#config_obj = DbConfig()
+#spark = utilities.spark_sess()
+#df = spark.read.option("multiline", "true").json(config_obj.comment_info)
+
+#df = df.select("h_id", explode("posts.data")).foreach(big_data_go_boom)
+#df.show()
+
+
 # load post meta data
 def load_comment_info_data():
     config_obj = DbConfig()
@@ -20,7 +35,7 @@ def load_comment_info_data():
                    col('post.h_id').alias('post_id'),
                    col('post.comments.data').alias("comments_data"))
     print(df.count())
-    df.write.parquet("data/temp/coment_info")
+
     df = data_go_boom(df, 'comments_data', 'comments_stats')
     df = df.select(col("h_id"),
                    col("post"),
@@ -49,17 +64,17 @@ def load_comment_info_data():
     return df
 
 
-#test = load_comment_info_data()
-#test.show(5)
+test = load_comment_info_data()
+test.show(5)
 
-spark = utilities.spark_sess()
-test = spark.read.parquet("data/temp/coment_info")
-print(test.count())
-test.show(100)
-test1 = test.select('comments_data.up_likes')
+#spark = utilities.spark_sess()
+#test = spark.read.parquet("data/temp/coment_info")
+#print(test.count())
+#test.show(100)
+#test1 = test.select('comments_data.up_likes')
 #test1 = data_go_boom(test, 'comments_data', 'comments_stats')
-print(test1.count())
-test1.show(100)
+#print(test1.count())
+#test1.show(100)
 #test2 = test1.select(col("h_id"),
 #                     col("post"),
 #                     col("post_id"),
