@@ -1,12 +1,14 @@
 from pygit2 import Repository
 from pyspark.sql import SparkSession
+from config import DbConfig
 
 
 def spark_sess():
+    config_obj = DbConfig()
     spark = SparkSession.builder \
         .appName("parse_data") \
-        .config("spark.driver.extraClassPath", "/Users/David/Desktop/postgresql-42.6.0.jar") \
-        .config("spark.executor.extraClassPath", "Users/David/Desktop//postgresql-42.6.0.jar") \
+        .config("spark.driver.extraClassPath", config_obj.postgres_driver_path) \
+        .config("spark.executor.extraClassPath", config_obj.postgres_driver_path) \
         .getOrCreate()
 
     return spark

@@ -17,6 +17,7 @@ db_constants = {"host": "localhost",
                 "environment": environment,
                 "database": "paramountplus",
                 "schema": "commentdata",
+                "postgres_driver_path":"/Users/david/Desktop/postgresql-42.3.0.jar",
                 "data_location": {"post_meta": str(Path('data_loader', 'data', 'post_meta')),
                                   "comment_text": str(Path('data_loader', 'data', 'comment_text')),
                                   "comment_info": str(Path('data_loader', 'data', 'comment_info_jsonl'))}}
@@ -42,3 +43,4 @@ class DbConfig:
         self.password = self.config["password"]
         self.template_database = self.config["template_database"]
         self.database = self.config["database"]
+        self.postgres_driver_path = self.config["postgres_driver_path"]

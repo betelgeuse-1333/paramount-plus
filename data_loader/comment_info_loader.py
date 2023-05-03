@@ -1,5 +1,5 @@
 from config import DbConfig
-from pyspark.sql import SparkSession
+from pyspark.sql.functions import to_timestamp
 import utilities
 
 spark = utilities.spark_sess()
@@ -11,7 +11,7 @@ def transform_row(row):
     transformed_posts = []
     for post in posts:
         post_h_id = post["h_id"]
-        if post['comments'] is None:
+        if post['comments'] is not None:
             comments = post["comments"]["data"]
             for comment in comments:
                 comment_h_id = comment["h_id"]
@@ -29,6 +29,8 @@ def process_jsons():
     df = spark.read.option("multiline", "true").json(config_obj.comment_info)
     rdd = df.rdd.flatMap(transform_row)
     df = rdd.toDF(["h_id", "post_h_id", "comment_h_id", "comment_count", "created_time", "up_likes"])
+    df = df.withColumn("created_time", to_timestamp("created_time"))
+    df.show(5)
     df.write \
         .format("jdbc") \
         .option("url", "jdbc:postgresql://localhost:5432/" + config_obj.database + config_obj.environment) \

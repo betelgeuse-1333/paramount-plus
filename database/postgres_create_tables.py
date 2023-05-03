@@ -56,10 +56,10 @@ def create_comment_info_table(config_obj=config_obj):
        CREATE TABLE IF NOT EXISTS """ + config_obj.schema + """.comment_info (
         h_id varchar(50) NULL, 
         post_h_id VARCHAR(50) NULL,
-        up_likes numeric(4) NULL,
+        comment_h_id VARCHAR(50) NULL,
         comment_count numeric(4) NULL,
         created_time timestamp NULL,
-        comment_h_id varchar(50) NULL
+        up_likes numeric(4) NULL
            );
            """
     cur.execute(query)
