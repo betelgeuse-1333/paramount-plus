@@ -1,11 +1,10 @@
 from pygit2 import Repository
 from pyspark.sql import SparkSession
-import os
 
 
 def spark_sess():
     spark = SparkSession.builder \
-        .appName("load post_meta") \
+        .appName("parse_data") \
         .config("spark.driver.extraClassPath", "/Users/David/Desktop/postgresql-42.6.0.jar") \
         .config("spark.executor.extraClassPath", "Users/David/Desktop//postgresql-42.6.0.jar") \
         .getOrCreate()
