@@ -2,19 +2,19 @@
 
 This repo contains the software to create and build a post gres database to house comment data\
 that is collected and transformed and loaded using spark.  The `requirements.txt` file
-was constructed using `pip freeze > requirementstxt` and should list all dependencies.
+was constructed using `pip freeze > requirements.txt` and should list all dependencies.
 
 **A few notes:**\
 -- The software requires postgres 15 and the requisite driver/ jar file to run it.\
     --I have included the jar file in the repo\
--- You will need python 3.5 installed
+-- You will need python 3.5 installed\
 -- For postgres you wil need to create a user and password (or use postgres) before you
 can begin building it.\
 -- The requirements.txt file has the details needed for all dependencies.\
--- Users will want to update the config file.  Specifically:\
+-- Users will want to update the config file.  Specifically:
 *     - user: postgres username
 *     - password: postgres password
-*     - postgres_driver_path: path to oyur postgres jar file
+*     - postgres_driver_path: path to your postgres jar file
 -- I highly recommend a venv.  I considered Docker, but was concerned about time and complexity.
 
 **Running the software:**
