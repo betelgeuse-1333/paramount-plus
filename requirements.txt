@@ -1,0 +1,8 @@
+cffi==1.15.1
+postgres==4.0
+psycopg2-binary==2.9.6
+psycopg2-pool==1.1
+py4j==0.10.9.7
+pycparser==2.21
+pygit2==1.12.0
+pyspark==3.4.0

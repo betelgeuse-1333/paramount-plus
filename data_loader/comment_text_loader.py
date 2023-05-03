@@ -1,18 +1,19 @@
 from config import DbConfig
 import utilities
+from pyspark.sql.functions import encode
 
 
 # load post meta data
-def load_post_meta_data():
+def load_comment_text_data():
     config_obj = DbConfig()
     spark = utilities.spark_sess()
-    print(config_obj.post_meta)
-    df = spark.read.parquet(config_obj.post_meta)
+    df = spark.read.csv(config_obj.comment_text, header=True)
+    df = df.withColumn("message", encode("message", 'utf-8'))
 
     df.write \
         .format("jdbc") \
         .option("url", "jdbc:postgresql://localhost:5432/"+config_obj.database+config_obj.environment) \
-        .option("dbtable", config_obj.schema+".post_meta") \
+        .option("dbtable", config_obj.schema+".comment_text") \
         .option("user", config_obj.user) \
         .option("password", config_obj.password) \
         .option("driver", "org.postgresql.Driver") \
@@ -22,4 +23,4 @@ def load_post_meta_data():
     return df
 
 
-load_post_meta_data()
+load_comment_text_data()
