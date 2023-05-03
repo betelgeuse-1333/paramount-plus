@@ -18,7 +18,7 @@ db_constants = {"host": "localhost",
                 "environment": environment,
                 "database": "paramountplus",
                 "schema": "commentdata",
-                "postgres_driver_path":"str(Path('path', 'to', 'jarfile', 'postgresql-42.3.0.jar')),
+                "postgres_driver_path": 'path/to/jar-file/postgresql-42.3.0.jar',
                 "data_location": {"post_meta": str(Path('data_loader', 'data', 'post_meta')),
                                   "comment_text": str(Path('data_loader', 'data', 'comment_text')),
                                   "comment_info": str(Path('data_loader', 'data', 'comment_info_jsonl'))}}
