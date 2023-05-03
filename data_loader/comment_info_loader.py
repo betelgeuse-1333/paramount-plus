@@ -1,8 +1,6 @@
 from config import DbConfig
 from pyspark.sql.functions import to_timestamp
-import spark_session_builder
-
-spark = spark_session_builder.spark_sess()
+from data_loader import spark_session_builder
 
 
 def transform_row(row):
@@ -26,11 +24,11 @@ def transform_row(row):
 
 def process_jsons():
     config_obj = DbConfig()
+    spark = spark_session_builder.spark_sess()
     df = spark.read.option("multiline", "true").json(config_obj.comment_info)
     rdd = df.rdd.flatMap(transform_row)
     df = rdd.toDF(["h_id", "post_h_id", "comment_h_id", "comment_count", "created_time", "up_likes"])
     df = df.withColumn("created_time", to_timestamp("created_time"))
-    df.show(5)
     df.write \
         .format("jdbc") \
         .option("url", "jdbc:postgresql://localhost:5432/" + config_obj.database + config_obj.environment) \
@@ -45,4 +43,3 @@ def process_jsons():
 
 
 process_jsons()
-
