@@ -23,5 +23,4 @@ def load_comment_text_data():
     return df
 
 
-test = load_comment_text_data()
-test.show(5)
+load_comment_text_data()
