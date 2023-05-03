@@ -1,5 +1,5 @@
 import utilities
-
+from pathlib import Path
 branch = utilities.curr_branch()
 
 if branch == "main":
@@ -17,9 +17,9 @@ db_constants = {"host": "localhost",
                 "environment": environment,
                 "database": "paramountplus",
                 "schema": "commentdata",
-                "data_location": {"post_meta": "data/post_meta",
-                                  "comment_text": "data/comment_text",
-                                  "comment_info": "data/comment_info_jsonl"}}
+                "data_location": {"post_meta": str(Path('data_loader', 'data', 'post_meta')),
+                                  "comment_text": str(Path('data_loader', 'data', 'comment_text')),
+                                  "comment_info": str(Path('data_loader', 'data', 'comment_info_jsonl'))}}
 
 
 class DbConfig:

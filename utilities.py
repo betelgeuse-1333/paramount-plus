@@ -1,5 +1,6 @@
 from pygit2 import Repository
 from pyspark.sql import SparkSession
+import os
 
 
 def spark_sess():

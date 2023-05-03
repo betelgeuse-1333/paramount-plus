@@ -1,4 +1,3 @@
-from pyspark.sql import SparkSession
 from config import DbConfig
 import utilities
 from pyspark.sql.functions import encode
